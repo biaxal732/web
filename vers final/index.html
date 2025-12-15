@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Ventas</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="login" class="screen">
+  <h2>ACCESO</h2>
+  <input id="user" placeholder="Usuario">
+  <input id="pass" type="password" placeholder="Contraseña">
+  <button onclick="login()">ENTRAR</button>
+</section>
+
+<!-- MENU ADMIN -->
+<section id="menuAdmin" class="screen hidden">
+  <h2>MENÚ ADMIN</h2>
+  <div class="grid-menu">
+    <button onclick="go('inventario')">Inventario</button>
+    <button onclick="go('ventas')">Ventas</button>
+    <button onclick="go('mermas')">Mermas</button>
+    <button onclick="go('usuarios')">Usuarios</button>
+    <button onclick="go('sucursales')">Sucursales</button>
+    <button onclick="go('tickets')">Tickets</button>
+    <button onclick="logout()">Salir</button>
+  </div>
+</section>
+
+<!-- MENU EMPLEADO -->
+<section id="menuEmpleado" class="screen hidden">
+  <h2>MENÚ</h2>
+  <div class="grid-menu">
+    <button onclick="go('ventas')">Ventas</button>
+    <button onclick="go('mermas')">Mermas</button>
+    <button onclick="logout()">Salir</button>
+  </div>
+</section>
+
+<!-- INVENTARIO -->
+<section id="inventario" class="screen hidden">
+  <h2>INVENTARIO</h2>
+  <button onclick="go('altaInventario')">Agregar producto</button>
+  <div id="inventarioLista" class="cards"></div>
+  <button onclick="goMenu()">Volver</button>
+</section>
+
+<!-- ALTA INVENTARIO -->
+<section id="altaInventario" class="screen hidden">
+  <h2>AGREGAR INVENTARIO</h2>
+  <input id="invProducto" placeholder="Producto">
+  <select id="invUnidad">
+    <option>kilo</option>
+    <option>litro</option>
+    <option>pieza</option>
+  </select>
+  <select id="invSucursal"></select>
+  <input id="invCompra" type="number" placeholder="Precio compra">
+  <input id="invVenta" type="number" placeholder="Precio venta">
+  <input id="invCantidad" type="number" placeholder="Cantidad">
+  <button onclick="guardarInventario()">Guardar</button>
+  <button onclick="go('inventario')">Cancelar</button>
+</section>
+
+<!-- VENTAS -->
+<section id="ventas" class="screen hidden">
+  <h2>VENTA</h2>
+  <select id="ventaSucursal"></select>
+  <select id="ventaProducto" onchange="autoPrecio()"></select>
+  <input id="ventaCantidad" type="number" placeholder="Cantidad" oninput="calcularTotal()">
+  <input id="ventaPrecio" readonly placeholder="Precio">
+  <input id="ventaTotal" readonly placeholder="Total">
+  <button onclick="agregarVenta()">Agregar</button>
+  <div id="ventaLista" class="cards"></div>
+  <button onclick="generarVenta()">Vender</button>
+  <button onclick="goMenu()">Cancelar</button>
+</section>
+
+<!-- MERMAS -->
+<section id="mermas" class="screen hidden">
+  <h2>MERMA</h2>
+  <input id="mermaProducto" placeholder="Producto">
+  <input id="mermaDescripcion" placeholder="Descripción">
+  <input id="mermaCantidad" type="number" placeholder="Cantidad">
+  <button onclick="guardarMerma()">Guardar</button>
+  <button onclick="goMenu()">Volver</button>
+</section>
+
+<!-- USUARIOS -->
+<section id="usuarios" class="screen hidden">
+  <h2>USUARIOS</h2>
+  <input id="uUsuario" placeholder="Usuario">
+  <input id="uPass" placeholder="Contraseña">
+  <select id="uRol">
+    <option>admin</option>
+    <option>empleado</option>
+  </select>
+  <input id="uSucursal" placeholder="Sucursal">
+  <button onclick="guardarUsuario()">Guardar</button>
+  <button onclick="goMenu()">Volver</button>
+</section>
+
+<!-- SUCURSALES -->
+<section id="sucursales" class="screen hidden">
+  <h2>SUCURSAL</h2>
+  <input id="sNombre" placeholder="Sucursal">
+  <input id="sDireccion" placeholder="Dirección">
+  <input id="sTelefono" placeholder="Teléfono">
+  <button onclick="guardarSucursal()">Guardar</button>
+  <button onclick="goMenu()">Volver</button>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets" class="screen hidden">
+  <h2>TICKET</h2>
+  <input id="tEmpresa" placeholder="Empresa">
+  <input id="tLeyenda" placeholder="Leyenda final">
+  <button onclick="guardarTicket()">Guardar</button>
+  <button onclick="goMenu()">Volver</button>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
